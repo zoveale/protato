@@ -6,7 +6,7 @@ int main(int argc, char* args[]) {
 
   System gameSystem;
 
-  gameSystem.InitSys();
+  gameSystem.InitSystems();
   gameSystem.Gameloop();
 
   return 0;

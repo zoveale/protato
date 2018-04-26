@@ -1,10 +1,11 @@
 #ifndef INPUTS_H
 #define INPUTS_H
 #include <SDL.h>
-
+#include <iostream>
 class Inputs {
   private:
   SDL_Event e;
+
   bool quit;
 
   public:

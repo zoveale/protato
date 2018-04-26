@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cpps\Graphics.cpp" />
     <ClCompile Include="cpps\Inputs.cpp" />
     <ClCompile Include="cpps\main.cpp" />
     <ClCompile Include="cpps\System.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\Graphics.h" />
     <ClInclude Include="headers\Inputs.h" />
     <ClInclude Include="headers\System.h" />
   </ItemGroup>

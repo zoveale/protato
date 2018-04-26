@@ -19,6 +19,7 @@ void Inputs::Process() {
   while (SDL_PollEvent(&e)) {
     if (e.type == SDL_QUIT) {
       quit = true;
+      printf( "x-out quit\n");
     }
   }
 

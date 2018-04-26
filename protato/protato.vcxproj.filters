@@ -24,12 +24,18 @@
     <ClCompile Include="cpps\Inputs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cpps\Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Inputs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
