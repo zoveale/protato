@@ -5,35 +5,40 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include "Global.h"
 //#include <string>
 
 class Graphics {
   private:
-  SDL_Texture* loaded;
   SDL_Renderer* renderer;
   SDL_Rect camVeiw;
-
+  
   SDL_Texture* currentState;
+
+
   std::vector<SDL_Texture*> state;
-  std::vector<SDL_Texture*> tiles;
-
-  const int TILE_SIZE = 32;
-  const int TOTAL_TILES = 800;
-
+  std::vector<SDL_Texture*> tileSheet;
+  
   public:
+
   Graphics();
   void SetRenderer(SDL_Renderer* r);
 
-  SDL_Texture* Load(std::string texture);
-  
   void SetState(SDL_Texture* state);
 
+  void AddTile(SDL_Texture* tile);
   void AddState(SDL_Texture* state);
-  SDL_Texture* GetState() const; 
+
+  SDL_Texture* GetState() const;
   //test draw
   void Draw(SDL_Rect& cam);
-  void DrawTiles(SDL_Rect& cam, const int lw, const int lh);
+
+  //void DrawTiles(SDL_Rect& cam);
+  //void setTile(std::string levelTileInfo, Tiles* test[]);
+
   ~Graphics();
 };
+
 
 #endif // !GRAPHICS_H

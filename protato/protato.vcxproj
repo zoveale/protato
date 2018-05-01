@@ -23,11 +23,17 @@
     <ClCompile Include="cpps\Inputs.cpp" />
     <ClCompile Include="cpps\main.cpp" />
     <ClCompile Include="cpps\System.cpp" />
+    <ClCompile Include="cpps\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\Global.h" />
     <ClInclude Include="headers\Graphics.h" />
     <ClInclude Include="headers\Inputs.h" />
     <ClInclude Include="headers\System.h" />
+    <ClInclude Include="headers\Tile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tiles\levelTest.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{58022B0F-6F2A-444B-9A41-112BB2E55B3E}</ProjectGuid>

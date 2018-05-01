@@ -20,8 +20,14 @@ void System::InitSystems() {
   input.SetEventHandler(keypresses);
 
   levels[0].SetRenderer(renderer);
-  levels[0].SetState(levels[0].Load("graphics/backdropTest.png"));
+  levels[0].AddState(Load("graphics/backdropTest.png"));
+  tiles[0].SetRenderer(renderer);
+  tiles[0].setTile("tiles/levelTest.txt");
 
+  tiles[0].AddTileTexture(NULL);
+  tiles[0].AddTileTexture(Load("graphics/backgroundOneTile.png"));
+  tiles[0].AddTileTexture(Load("graphics/backgroundClimbOne.png"));
+  tiles[0].AddTileTexture(Load("graphics/backgroundTwoTile.png"));
 }
 
 void System::Gameloop() {
@@ -31,9 +37,13 @@ void System::Gameloop() {
     input.Process();
     SDL_RenderClear(renderer);
     
-    
+    camera.x += 1;
+    camera.y += 1;
+
     //drawbackDrop
     levels[0].Draw(camera);
+    tiles[0].DrawTiles(camera);
+    //break;
     //draw background tiles
     //draw interactable tiles
     //draw player
@@ -68,6 +78,19 @@ void System::InitSDL_IMG() {
     printf("IMG_Init: Failed to init required jpg and png support!\n");
     printf("IMG_Init: %s\n", IMG_GetError());
   }
+}
+
+SDL_Texture* System::Load(std::string texture) {
+  SDL_Surface* loadedSurface = IMG_Load(texture.c_str());
+  
+  if (loadedSurface == nullptr) { printf("error loaded surface\n"); }
+  else {
+    loaded = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+    if (loaded == nullptr) { printf("new texture error\n"); }
+    SDL_FreeSurface(loadedSurface);
+  }
+  std::cout << "texure loaded\n";
+  return loaded;
 }
 
 System::~System() {

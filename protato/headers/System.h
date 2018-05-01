@@ -4,9 +4,12 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Global.h"
 
 #include "Inputs.h"
 #include "Graphics.h"
+#include "Tile.h"
+
 //#include levels
 //#include gameobjects
 //#include ??
@@ -18,17 +21,13 @@ class System {
   SDL_Renderer* renderer;
   SDL_Event keypresses;
   SDL_Rect camera;
+  SDL_Texture* loaded;
 
-  static const int LEVEL_WIDTH = 1280;
-  static const int LEVEL_HEIGHT = 960;
-  
-  static const int SCREEN_WIDTH = 640;
-  static const int SCREEN_HEIGHT = 480;
-  
-
+ 
   Inputs input;
   Graphics levels[5];
-
+  Tile tiles[5];
+  
   public:
   System();
   
@@ -36,9 +35,12 @@ class System {
   void Gameloop();
 
   //SDL systems
+  SDL_Texture* Load(std::string texture);
+
   void InitSDL();
   void InitSDL_IMG();
   ~System();
 };
+
 
 #endif // !SYSTEM_H
