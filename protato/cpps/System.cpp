@@ -5,6 +5,7 @@
 System::System() {
   camera.w = SCREEN_WIDTH;
   camera.h = SCREEN_HEIGHT;
+  
   InitSDL(); //SDL initilization
   InitSDL_IMG(); //SDL_IMG init, PNGs ok!
   //TTF
@@ -15,19 +16,30 @@ System::System() {
 
 void System::InitSystems() {
   std::cout << "initialize all systems\n";
-
+  
   //Init other systems
   input.SetEventHandler(keypresses);
 
   levels[0].SetRenderer(renderer);
   levels[0].AddState(Load("graphics/backdropTest.png"));
-  tiles[0].SetRenderer(renderer);
-  tiles[0].setTile("tiles/levelTest.txt");
+  levels[0].SetPlayerPos(0, 0);
 
+  tiles[0].SetRenderer(renderer);
+  tiles[0].setTile("tiles/levelOne.txt");
+  //FIX_ME add sprite sheets and load one png
   tiles[0].AddTileTexture(NULL);
-  tiles[0].AddTileTexture(Load("graphics/backgroundOneTile.png"));
   tiles[0].AddTileTexture(Load("graphics/backgroundClimbOne.png"));
+  tiles[0].AddTileTexture(Load("graphics/backgroundOneTile.png"));
   tiles[0].AddTileTexture(Load("graphics/backgroundTwoTile.png"));
+  tiles[0].AddTileTexture(Load("graphics/damageOne.png"));
+  tiles[0].AddTileTexture(Load("graphics/foregroundOne.png"));
+  tiles[0].AddTileTexture(Load("graphics/walkOne.png"));
+  tiles[0].AddTileTexture(Load("graphics/bounceTwo.png"));
+  
+  player.setRenderer(renderer);
+  player.Init(levels[0].StartPos(), 25, 50);
+  player.AddTexture(Load("graphics/playerOne.png"));
+
 }
 
 void System::Gameloop() {
@@ -35,21 +47,30 @@ void System::Gameloop() {
   
   while (!input.Quit()) {
     input.Process();
-    SDL_RenderClear(renderer);
     
-    camera.x += 1;
-    camera.y += 1;
+    player.Movement(input.GetInput());
+    
+    //collisions
+    //MAKE COLLISONS CLASS
 
-    //drawbackDrop
+    //Update Objects
+    player.Update(camera);
+    
+    SDL_RenderClear(renderer);
+    //Draw all
+    levels[0].SetCamera(camera);
     levels[0].Draw(camera);
-    tiles[0].DrawTiles(camera);
-    //break;
-    //draw background tiles
+    tiles[0].DrawTiles(camera, levels[0].LevelRect());
+    player.Draw(camera);
+
+   
+    
     //draw interactable tiles
     //draw player
     //draw foreground tiles
 
     SDL_RenderPresent(renderer);
+    SDL_Delay(001);
   }
 }
 
@@ -89,7 +110,7 @@ SDL_Texture* System::Load(std::string texture) {
     if (loaded == nullptr) { printf("new texture error\n"); }
     SDL_FreeSurface(loadedSurface);
   }
-  std::cout << "texure loaded\n";
+  //std::cout << "texure loaded\n";
   return loaded;
 }
 

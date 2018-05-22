@@ -5,38 +5,40 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include "Global.h"
 //#include <string>
 
 class Graphics {
   private:
   SDL_Renderer* renderer;
-  SDL_Rect camVeiw;
+
+  SDL_Rect levelRect;
+  SDL_Point pos;
   
   SDL_Texture* currentState;
-
-
   std::vector<SDL_Texture*> state;
-  std::vector<SDL_Texture*> tileSheet;
+  
+  
   
   public:
 
   Graphics();
   void SetRenderer(SDL_Renderer* r);
 
+  SDL_Rect LevelRect();
   void SetState(SDL_Texture* state);
-
-  void AddTile(SDL_Texture* tile);
+  void SetPlayerPos(int x, int y);
+  SDL_Point StartPos();
+  
   void AddState(SDL_Texture* state);
 
   SDL_Texture* GetState() const;
   //test draw
+  void SetCamera(SDL_Rect& cam);
+  void SetTileBounds(SDL_Rect& tileBounds);
   void Draw(SDL_Rect& cam);
 
-  //void DrawTiles(SDL_Rect& cam);
-  //void setTile(std::string levelTileInfo, Tiles* test[]);
-
+  
   ~Graphics();
 };
 

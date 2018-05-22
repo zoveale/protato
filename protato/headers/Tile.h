@@ -13,21 +13,25 @@ class Tile {
   ~Tile();
   void SetRenderer(SDL_Renderer* r);
   void setTile(std::string levelTileInfo);
-  void SetTilePos(int i, int x, int y);
+  //void SetTilePos(int i, int x, int y);
   void AddTileTexture(SDL_Texture* tile);
-  void DrawTiles(SDL_Rect &cam);
-
+  void DrawTiles(SDL_Rect &cam, SDL_Rect& level);
+  //SDL_Rect tilePosition(int x, int y);
   private:
   SDL_Renderer* renderer;
 
-  std::vector<SDL_Rect> tilePos;
-  //SDL_Rect levelsize{0,0, LEVEL_HEIGHT, LEVEL_WIDTH};
+  //std::vector<SDL_Rect> tilePos;
+  int tileAnchor[40][30];
+  SDL_Rect tileRec[40][30];
+  
+  
   int tileIdentity;
-  std::vector<int> tileType;
+  int tileType[40][30];
+
   int xpos;
   int ypos;
 
-  std::vector<SDL_Texture*> tiles;
+  std::vector<SDL_Texture*> tileTexture;
 
 };
 
